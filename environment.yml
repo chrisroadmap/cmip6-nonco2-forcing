@@ -1,0 +1,10 @@
+name: cmip6-nonco2-forcing
+channels:
+  - conda-forge
+dependencies:
+  - jupyter
+  - matplotlib
+  - nbstripout
+  - numpy
+  - pandas
+  - scipy
