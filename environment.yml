@@ -8,4 +8,5 @@ dependencies:
   - nbstripout
   - numpy
   - pandas
+  - python-dotenv
   - scipy
