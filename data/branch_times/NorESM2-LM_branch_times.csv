@@ -1,0 +1,13 @@
+,model,exp,member,parent_experiment_id,parent_variant_id,branch_time_in_child,branch_time_in_parent,parent_time_units,branch_method
+0,NorESM2-LM,esm-hist,r10i1p1f1,esm-piControl,r1i1p1f1,[0.],[204400.],days since 1751-01-01,Hybrid-restart from year 2311-01-01 of esm-piControl
+1,NorESM2-LM,esm-hist,r1i1p1f1,esm-piControl,r1i1p1f1,[0.],[521950.],days since 0421-01-01,Hybrid-restart from year 1851-01-01 of esm-piControl
+2,NorESM2-LM,esm-hist,r2i1p1f1,esm-piControl,r1i1p1f1,[0.],[547550.],days since 1751-01-01,Hybrid-restart from year 1901-01-01 of esm-piControl
+3,NorESM2-LM,esm-hist,r3i1p1f1,esm-piControl,r1i1p1f1,[0.],[73000.],days since 1751-01-01,Hybrid-restart from year 1951-01-01 of esm-piControl
+4,NorESM2-LM,esm-hist,r4i1p1f1,esm-piControl,r1i1p1f1,[0.],[91520.],days since 1751-01-01,Hybrid-restart from year 2001-01-01 of esm-piControl
+5,NorESM2-LM,esm-hist,r5i1p1f1,esm-piControl,r1i1p1f1,[0.],[109500.],days since 1751-01-01,Hybrid-restart from year 2051-01-01 of esm-piControl
+6,NorESM2-LM,esm-hist,r6i1p1f1,esm-piControl,r1i1p1f1,[0.],[164250.],days since 1751-01-01,Hybrid-restart from year 2201-01-01 of esm-piControl
+7,NorESM2-LM,esm-hist,r7i1p1f1,esm-piControl,r1i1p1f1,[0.],[175200.],days since 1751-01-01,Hybrid-restart from year 2231-01-01 of esm-piControl
+8,NorESM2-LM,esm-hist,r8i1p1f1,esm-piControl,r1i1p1f1,[0.],[182500.],days since 1751-01-01,Hybrid-restart from year 2251-01-01 of esm-piControl
+9,NorESM2-LM,esm-hist,r9i1p1f1,esm-piControl,r1i1p1f1,[0.],[197100.],days since 1751-01-01,Hybrid-restart from year 2291-01-01 of esm-piControl
+10,NorESM2-LM,esm-piControl,r1i1p1f1,esm-piControl-spinup,r1i1p1f1,0.0,0.0,days since 1851-01-01,Hybrid-restart from year 1851-01-01 of piControl
+11,NorESM2-LM,esm-ssp585,r1i1p1f1,esm-hist,r1i1p1f1,[0.],[60225.],days since 0421-01-01,Hybrid-restart from year 2015-01-01 of esm-hist
