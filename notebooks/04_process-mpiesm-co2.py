@@ -18,7 +18,7 @@ import matplotlib.pyplot as pl
 import warnings
 import pandas as pd
 import numpy as np
-
+from tqdm.auto import tqdm
 
 # In[2]:
 
@@ -68,9 +68,9 @@ ensemble_members = {
 output = {}
 with warnings.catch_warnings():
     warnings.simplefilter("ignore")
-    for experiment in experiments:
+    for experiment in tqdm(experiments):
         output[experiment] = {}
-        for iens in range(ensemble_members[experiment]):
+        for iens in tqdm(range(ensemble_members[experiment]), leave=False):
             runid = f'r{iens+1}i1p1f1'
             tempoutput = {}
             for variable in variables:

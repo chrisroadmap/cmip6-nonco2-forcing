@@ -1,8 +1,8 @@
 ,model,exp,member,parent_experiment_id,parent_variant_id,branch_time_in_child,branch_time_in_parent,parent_time_units,branch_method
 0,NorESM2-LM,esm-hist,r10i1p1f1,esm-piControl,r1i1p1f1,[0.],[204400.],days since 1751-01-01,Hybrid-restart from year 2311-01-01 of esm-piControl
-1,NorESM2-LM,esm-hist,r1i1p1f1,esm-piControl,r1i1p1f1,[0.],[521950.],days since 0421-01-01,Hybrid-restart from year 1851-01-01 of esm-piControl
-2,NorESM2-LM,esm-hist,r2i1p1f1,esm-piControl,r1i1p1f1,[0.],[547550.],days since 1751-01-01,Hybrid-restart from year 1901-01-01 of esm-piControl
-3,NorESM2-LM,esm-hist,r3i1p1f1,esm-piControl,r1i1p1f1,[0.],[73000.],days since 1751-01-01,Hybrid-restart from year 1951-01-01 of esm-piControl
+1,NorESM2-LM,esm-hist,r1i1p1f1,esm-piControl,r1i1p1f1,0.,521950.,days since 0421-01-01,Hybrid-restart from year 1851-01-01 of esm-piControl
+2,NorESM2-LM,esm-hist,r2i1p1f1,esm-piControl,r1i1p1f1,0.,547550.,days since 1751-01-01,Hybrid-restart from year 1901-01-01 of esm-piControl
+3,NorESM2-LM,esm-hist,r3i1p1f1,esm-piControl,r1i1p1f1,0.,73000.,days since 1751-01-01,Hybrid-restart from year 1951-01-01 of esm-piControl
 4,NorESM2-LM,esm-hist,r4i1p1f1,esm-piControl,r1i1p1f1,[0.],[91520.],days since 1751-01-01,Hybrid-restart from year 2001-01-01 of esm-piControl
 5,NorESM2-LM,esm-hist,r5i1p1f1,esm-piControl,r1i1p1f1,[0.],[109500.],days since 1751-01-01,Hybrid-restart from year 2051-01-01 of esm-piControl
 6,NorESM2-LM,esm-hist,r6i1p1f1,esm-piControl,r1i1p1f1,[0.],[164250.],days since 1751-01-01,Hybrid-restart from year 2201-01-01 of esm-piControl
@@ -11,3 +11,22 @@
 9,NorESM2-LM,esm-hist,r9i1p1f1,esm-piControl,r1i1p1f1,[0.],[197100.],days since 1751-01-01,Hybrid-restart from year 2291-01-01 of esm-piControl
 10,NorESM2-LM,esm-piControl,r1i1p1f1,esm-piControl-spinup,r1i1p1f1,0.0,0.0,days since 1851-01-01,Hybrid-restart from year 1851-01-01 of piControl
 11,NorESM2-LM,esm-ssp585,r1i1p1f1,esm-hist,r1i1p1f1,[0.],[60225.],days since 0421-01-01,Hybrid-restart from year 2015-01-01 of esm-hist
+92,NorESM2-LM,esm-ssp119,r1i1p1f1,esm-hist,r1i1p1f1,60265,60265,days since 1850-1-1 00:00:00,standard
+93,NorESM2-LM,esm-ssp119,r1i1p1f2,esm-hist,r1i1p1f1,91676,91676,days since 1850-1-1 00:00:00,standard
+94,NorESM2-LM,esm-ssp119,r2i1p1f1,esm-hist,r2i1p1f1,60265,60265,days since 1850-1-1 00:00:00,standard
+95,NorESM2-LM,esm-ssp119,r2i1p1f2,esm-hist,r2i1p1f1,91676,91676,days since 1850-1-1 00:00:00,standard
+96,NorESM2-LM,esm-ssp119,r3i1p1f1,esm-hist,r3i1p1f1,60265,60265,days since 1850-1-1 00:00:00,standard
+97,NorESM2-LM,esm-ssp119,r3i1p1f2,esm-hist,r3i1p1f1,91676,91676,days since 1850-1-1 00:00:00,standard
+98,NorESM2-LM,esm-ssp245,r1i1p1f1,esm-hist,r1i1p1f1,60265,60265,days since 1850-1-1 00:00:00,standard
+99,NorESM2-LM,esm-ssp245,r1i1p1f2,esm-hist,r1i1p1f1,91676,91676,days since 1850-1-1 00:00:00,standard
+100,NorESM2-LM,esm-ssp245,r2i1p1f1,esm-hist,r2i1p1f1,60265,60265,days since 1850-1-1 00:00:00,standard
+101,NorESM2-LM,esm-ssp245,r2i1p1f2,esm-hist,r2i1p1f1,91676,91676,days since 1850-1-1 00:00:00,standard
+102,NorESM2-LM,esm-ssp245,r3i1p1f1,esm-hist,r3i1p1f1,60265,60265,days since 1850-1-1 00:00:00,standard
+103,NorESM2-LM,esm-ssp245,r3i1p1f2,esm-hist,r3i1p1f1,91676,91676,days since 1850-1-1 00:00:00,standard
+104,NorESM2-LM,esm-ssp534-over,r1i1p1f1,esm-hist,r1i1p1f1,60265,60265,days since 1850-1-1 00:00:00,standard
+105,NorESM2-LM,esm-ssp534-over,r1i1p1f2,esm-hist,r1i1p1f1,91676,91676,days since 1850-1-1 00:00:00,standard
+106,NorESM2-LM,esm-ssp534-over,r2i1p1f1,esm-hist,r2i1p1f1,60265,60265,days since 1850-1-1 00:00:00,standard
+107,NorESM2-LM,esm-ssp534-over,r2i1p1f2,esm-hist,r2i1p1f1,91676,91676,days since 1850-1-1 00:00:00,standard
+108,NorESM2-LM,esm-ssp534-over,r3i1p1f1,esm-hist,r3i1p1f1,60265,60265,days since 1850-1-1 00:00:00,standard
+109,NorESM2-LM,esm-ssp534-over,r3i1p1f2,esm-hist,r3i1p1f1,91676,91676,days since 1850-1-1 00:00:00,standard
+
