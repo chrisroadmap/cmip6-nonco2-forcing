@@ -301,3 +301,26 @@ pl.ylabel('W/m2')
 pl.legend()
 
 # %%
+avg119 = np.zeros((450, 10))
+avg245 = np.zeros((450, 10))
+avg534 = np.zeros((450, 10))
+for im, member in enumerate(members):
+    df_erf = pd.read_csv(f'../output/processed/{model}/esm-ssp119/erf/{member}.csv')
+    avg119[:, im] = df_erf['ERF'].values
+    df_erf = pd.read_csv(f'../output/processed/{model}/esm-ssp245/erf/{member}.csv')
+    avg245[:, im] = df_erf['ERF'].values
+    df_erf = pd.read_csv(f'../output/processed/{model}/esm-ssp534-over/erf/{member}.csv')
+    avg534[:, im] = df_erf['ERF'].values
+avg119 = np.mean(avg119, axis=1)
+avg245 = np.mean(avg245, axis=1)
+avg534 = np.mean(avg534, axis=1)
+
+# %%
+pl.plot(np.arange(1850, 2300), avg119, label='ssp119', color=colors['esm-ssp119'])
+pl.plot(np.arange(1850, 2300), avg245, label='ssp245', color=colors['esm-ssp245'])
+pl.plot(np.arange(1850, 2300), avg534, label='ssp534-over', color=colors['esm-ssp534-over'])
+pl.title('Total forcing')
+pl.ylabel('W/m2')
+pl.legend()
+
+# %%
