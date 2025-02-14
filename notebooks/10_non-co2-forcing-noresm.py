@@ -35,9 +35,6 @@ def myhre(x, d):
 
 
 # %%
-df_co2_conc_ssp = pd.read_csv('../data/ssp_co2_concentration.csv', index_col=0)
-
-# %%
 colors = {
     'esm-hist': '#000000',
     'esm-ssp119': '#00a9cf',
@@ -50,11 +47,12 @@ for scenario in ['esm-hist', 'esm-ssp119', 'esm-ssp245', 'esm-ssp534-over']:
     # anomalies only processed for 3 runs
     for run in range(1, 4):
         fvars = 2
-        if scenario != 'esm_hist':
+        if scenario == 'esm-hist':
             fvars = 1
         for fvar in range(1, fvars+1):
-            df_co2 = pd.read_csv(f'../output/processed/MPI-ESM1-2-LR//{scenario}/co2_vmr/r{run}i1p1f{fvar}.csv', index_col=0)
-            f_co2 = myhre(df_co2, *df_myhre.loc['MPI-ESM1-2-LR'].values)
+            filename = f'../output/processed/NorESM2-LM/{scenario}/co2_vmr/r{run}i1p1f{fvar}.csv'
+            df_co2 = pd.read_csv(filename, index_col=0)
+            f_co2 = myhre(df_co2, *df_myhre.loc['NorESM2-LM'].values)
             pl.plot(f_co2, color=colors[scenario])
 pl.title('CO2 effective radiative forcing')
 pl.ylabel('W/m2')
@@ -265,7 +263,6 @@ for model in model_names:
         members1 = [f'r{run}i1p1f1' for run in range(1, ensemble_members[exp]+1)]
         members2 = [f'r{run}i1p1f2' for run in range(1, ensemble_members[exp]+1)]
         for run, member1 in enumerate(members1):
-            print(exp, run)
             member2 = members2[run]
             df_F_hist = pd.read_csv(f'../output/processed/{model}/esm-hist/erf/{member}.csv', index_col=0)
             df_co2_hist = pd.read_csv(f'../output/processed/{model}/esm-hist/co2_vmr/{member}.csv', index_col=0)
@@ -275,10 +272,7 @@ for model in model_names:
             df_co2_1 = pd.read_csv(f'../output/processed/{model}/{exp}/co2_vmr/{member1}.csv', index_col=0)
             df_co2_2 = pd.read_csv(f'../output/processed/{model}/{exp}/co2_vmr/{member2}.csv', index_col=0)
             df_co2 = pd.concat((df_co2_1, df_co2_2))
-            print(df_co2)
             f_co2 = myhre(df_co2, *df_myhre.loc['NorESM2-LM'].values)
-            print(f_co2)
-            print(df_F)
             f_non_co2 = df_F.loc[2015:].values - f_co2.values
             os.makedirs(f'../output/processed/{model}/{exp}/non-co2_erf/', exist_ok=True)
             df_nonco2 = pd.DataFrame(np.concatenate((f_non_co2_hist, f_non_co2)), index=np.concatenate((df_F_hist.index, df_F.loc[2015:].index)), columns=['nonCO2_erf'])
@@ -286,9 +280,9 @@ for model in model_names:
             pl.plot(df_nonco2, color=colors[exp], alpha=0.1)
 
 # %%
-avg119 = np.zeros((450, 10))
-avg245 = np.zeros((450, 10))
-avg534 = np.zeros((450, 10))
+avg119 = np.zeros((450, 3))
+avg245 = np.zeros((450, 3))
+avg534 = np.zeros((450, 3))
 for im, member in enumerate(members):
     df_nonco2 = pd.read_csv(f'../output/processed/{model}/esm-ssp119/non-co2_erf/{member}.csv')
     avg119[:, im] = df_nonco2['nonCO2_erf'].values
@@ -305,6 +299,29 @@ pl.plot(np.arange(1850, 2300), avg119, label='ssp119', color=colors['esm-ssp119'
 pl.plot(np.arange(1850, 2300), avg245, label='ssp245', color=colors['esm-ssp245'])
 pl.plot(np.arange(1850, 2300), avg534, label='ssp534-over', color=colors['esm-ssp534-over'])
 pl.title('Non-CO2 forcing')
+pl.ylabel('W/m2')
+pl.legend()
+
+# %%
+avg119 = np.zeros((450, 3))
+avg245 = np.zeros((450, 3))
+avg534 = np.zeros((450, 3))
+for im, member in enumerate(members):
+    df_erf = pd.read_csv(f'../output/processed/{model}/esm-ssp119/erf/{member}.csv')
+    avg119[:, im] = df_erf['ERF'].values
+    df_erf = pd.read_csv(f'../output/processed/{model}/esm-ssp245/erf/{member}.csv')
+    avg245[:, im] = df_erf['ERF'].values
+    df_erf = pd.read_csv(f'../output/processed/{model}/esm-ssp534-over/erf/{member}.csv')
+    avg534[:, im] = df_erf['ERF'].values
+avg119 = np.mean(avg119, axis=1)
+avg245 = np.mean(avg245, axis=1)
+avg534 = np.mean(avg534, axis=1)
+
+# %%
+pl.plot(np.arange(1850, 2300), avg119, label='ssp119', color=colors['esm-ssp119'])
+pl.plot(np.arange(1850, 2300), avg245, label='ssp245', color=colors['esm-ssp245'])
+pl.plot(np.arange(1850, 2300), avg534, label='ssp534-over', color=colors['esm-ssp534-over'])
+pl.title('Total forcing')
 pl.ylabel('W/m2')
 pl.legend()
 

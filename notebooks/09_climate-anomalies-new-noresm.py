@@ -167,8 +167,6 @@ for exp in experiments:
             exp_years = [str(yr)[:4] for yr in exp_years] # this code is not tested yet
         exp_start_year = exp_years[0]
         exp_len = len(exp_years)
-        print(exp, member)
-        print(member_df)
 
         # find historical parent member 
         parent_member = member_df['parent_variant_id'].values[0]
