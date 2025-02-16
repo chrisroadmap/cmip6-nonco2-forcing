@@ -2,6 +2,7 @@ name: cmip6-nonco2-forcing
 channels:
   - conda-forge
 dependencies:
+  - fair==2.2.2
   - iris
   - jupyter
   - jupytext
