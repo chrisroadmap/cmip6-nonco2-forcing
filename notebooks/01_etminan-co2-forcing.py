@@ -13,7 +13,11 @@
 # ---
 
 # %% [markdown]
-# # Calculate CO2 forcing in each model
+# # Calculate CO2 forcing in each Earth System model
+#
+# This is a function of radiative transfer, rapid adjustments, etc...
+#
+# We use Hege's calculated forcing from 1pctCO2 runs and fit this to log(CO2)
 
 # %%
 import os
@@ -30,7 +34,9 @@ from scipy.optimize import curve_fit
 #
 # - We want to determine what the CO2 ERF is for an arbritrary CO2 concentration
 # - could use the 1pctCO2 run to plot ERF as a function of concentration which opens up to more models
-# - in fact let's do that, and fit Etminan parameters to each
+# - in fact let's do that, and fit ~Etminan parameters~ scale factor for the log(CO2) term to each
+#
+# Don't use Etminan because of breakdown in relationship at high concentrations. Don't use Meinshausen because of overlap with N2O and overfitting is a real problem resulting in some unphysical parameter values.
 
 # %%
 co2_conc_1pct = 1.01 ** np.arange(181) * 284.316999854786   # Meinshausen uses exactly this def, see supplementary XLS files to Meinshausen et al. 2017
@@ -60,10 +66,10 @@ regress = {}
 myhre_fit = {}
 etminan_fit = {}
 meinshausen_fit = {}
-model_paths = glob.glob('../data/transient_forcing_estimates/*/')
+model_paths = glob.glob(os.path.join(*os.path.normpath('../data/transient_forcing_estimates/*/').split(os.sep)))
 for model_path in model_paths:
-    model = model_path.split('/')[-2]
-    model_run_paths = glob.glob(model_path + '1pctCO2/*.csv')
+    model = model_path.split(os.sep)[-1]
+    model_run_paths = glob.glob(os.path.join(model_path, '1pctCO2', '*.csv'))
     n_runs = len(model_run_paths)
     for i_run, model_run_path in enumerate(model_run_paths):
         this_erf = pd.read_csv(model_run_path)['ERF'].values
@@ -114,6 +120,9 @@ for i_model, model in enumerate(co2_1pct_erf):
         color='k'
     )
 
+# %%
+os.makedirs(os.path.join('..', 'plots'), exist_ok=True)
+
 # %% [markdown]
 # ## Myhre relationships in each model
 
@@ -130,6 +139,22 @@ for i_model, model in enumerate(co2_1pct_erf):
     )
     ax[ax_i,ax_j].set_title(model, fontsize=9)
 fig.tight_layout()
+pl.savefig('../plots/cmip6_myhre_fits.png')
+
+# %%
+fig, ax = pl.subplots(6, 9, figsize=(16, 9))
+for i_model, model in enumerate(co2_1pct_erf):
+    ax_i = i_model//9
+    ax_j = i_model%9
+    ax[ax_i,ax_j].scatter(np.log(co2_conc_1pct[:len(co2_1pct_erf[model])]), co2_1pct_erf[model])
+    ax[ax_i,ax_j].plot(
+        np.log(co2_conc_1pct[:len(co2_1pct_erf[model])]),
+        myhre(co2_conc_1pct[:len(co2_1pct_erf[model])], myhre_fit[model][0][0]),
+        color='k'
+    )
+    ax[ax_i,ax_j].set_title(model, fontsize=9)
+fig.tight_layout()
+pl.savefig('../plots/cmip6_log_myhre_fits.png')
 
 # %% [markdown]
 # ## Etminan relationships in each model
@@ -147,6 +172,7 @@ for i_model, model in enumerate(co2_1pct_erf):
     )
     ax[ax_i,ax_j].set_title(model, fontsize=9)
 fig.tight_layout()
+pl.savefig('../plots/cmip6_etminan_fits.png')
 
 # %% [markdown]
 # ## Meinshausen relationships
@@ -164,6 +190,7 @@ for i_model, model in enumerate(co2_1pct_erf):
     )
     ax[ax_i,ax_j].set_title(model, fontsize=9)
 fig.tight_layout()
+pl.savefig('../plots/cmip6_meinshausen_fits.png')
 
 # %%
 myhre_fit
@@ -202,6 +229,7 @@ df_out.to_csv('../output/meinshausen_forcing_params.csv', index=False)
 c0 = 284.316999854786
 
 # %%
+# this is where we can see some of the Meinshausen fits are not great (this is the concentration value at where we cross back to the log regime at high concentrations)
 for model in co2_1pct_erf:
     print(model, c0 - meinshausen_fit[model][0][1] / (2*meinshausen_fit[model][0][0]))
 
